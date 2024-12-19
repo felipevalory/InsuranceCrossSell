@@ -1,29 +1,40 @@
+import os
 import pickle
 import inflection
 
 
 class HealthInsurance(object):
     def __init__(self):
-        self.home_path = ('C:/Users/Felipe/Documents/Felipe/CienciaDeDados/'
-                          'repos/purchasing_propensity/')
+        self.home_path = os.getcwd()
 
-        path1 = f"{self.home_path}src/features/annual_premium_scaler.pkl"
-        self.annual_premium_scaler = pickle.load(open(path1, 'rb'))
+        self.annual_premium_scaler = pickle.load(open(os.path.join(
+            self.home_path,
+            '/src/features',
+            'annual_premium_scaler.pkl'), 'rb'))
 
-        path2 = f"{self.home_path}src/features/age_scaler.pkl"
-        self.age_scaler = pickle.load(open(path2, 'rb'))
+        self.age_scaler = pickle.load(open(os.path.join(
+                self.home_path,
+                '/src/features',
+                'age_scaler.pkl'), 'rb'))
 
-        path3 = f"{self.home_path}src/features/vintage_scaler.pkl"
-        self.vintage_scaler = pickle.load(open(path3, 'rb'))
+        self.vintage_scaler = pickle.load(open(os.path.join(
+            self.home_path,
+            '/src/features',
+            'vintage_scaler.pkl'), 'rb'))
 
-        path4 = f"{self.home_path}src/features/target_encode_gender_scaler.pkl"
-        self.target_encode_gender_scaler = pickle.load(open(path4, 'rb'))
+        self.target_encode_gender_scaler = pickle.load(open(os.path.join(
+            self.home_path,
+            '/src/features',
+            'target_encode_gender_scaler.pkl'), 'rb'))
 
-        path5 = f"{self.home_path}src/features/target_encode_region_code_scaler.pkl"
-        self.target_encode_region_code_scaler = pickle.load(open(path5, 'rb'))
+        self.target_encode_region_code_scaler = pickle.load(open(os.path.join(
+            self.home_path,
+            '/src/features',
+            'target_encode_region_code_scaler.pkl'), 'rb'))
 
-        path6 = f"{self.home_path}src/features/fe_policy_sales_channel_scaler.pkl"
-        self.fe_policy_sales_channel_scaler = pickle.load(open(path6, 'rb'))
+        self.fe_policy_sales_channel_scaler = pickle.load(open(os.path.join(
+            self.home_path,
+            '/src/features', 'fe_policy_sales_channel_scaler.pkl'), 'rb'))
 
     def rename_columns(self, data):
         new_columns = {col: inflection.underscore(col) for col in data.columns}
@@ -31,10 +42,13 @@ class HealthInsurance(object):
 
     def feature_engineering(self, data):
         # vehicle age
-        # df2['vehicle_age'] = df2['vehicle_age'].apply(lambda x: 'over_2_years' if x == '> 2 Years' else 'between_1_2_year' if x == '1-2 Year' else 'below_1_year')
+        # df2['vehicle_age'] = df2['vehicle_age'].apply(lambda x: 
+        # 'over_2_years' if x == '> 2 Years' else 'between_1_2_year' if x ==
+        # '1-2 Year' else 'below_1_year')
 
         # vehicle damage
-        data['vehicle_damage'] = data['vehicle_damage'].apply(lambda x: 1 if x == 'Yes' else 0)
+        data['vehicle_damage'] = (data['vehicle_damage']
+                                  .apply(lambda x: 1 if x == 'Yes' else 0))
 
         return data
 
@@ -79,6 +93,6 @@ class HealthInsurance(object):
         pred = model.predict_proba(test_data)
 
         # join prediction into original data
-        original_data['score'] = pred[:,1].tolist()
+        original_data['score'] = pred[:, 1].tolist()
 
         return original_data.to_json(orient='records', date_format='iso')

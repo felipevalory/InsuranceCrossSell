@@ -1,12 +1,16 @@
+import os
 import pickle
 import pandas as pd
 from flask import Flask, request, Response
 from API.health_insurance.health_insurance import HealthInsurance
 
 # loading model
-path = ('C:/Users/Felipe/Documents/Felipe/CienciaDeDados/repos/'
-        'purchasing_propensity/src/models/')
-model = (pickle.load(open(path + 'model_linear_regression.pkl', 'rb')))
+home_path = os.getcwd()
+model = (pickle.load(open(os.path.join(
+    home_path,
+    'src',
+    'models',
+    'model_health_insurance_cross_sell.pkl', 'rb'))))
 
 # initialize API
 app = Flask(__name__)
@@ -44,4 +48,5 @@ def health_insurance_predict():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0')
+    port = os.environ.get('PORT', 5000)
+    app.run('0.0.0.0', port=port)
