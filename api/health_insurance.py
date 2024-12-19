@@ -9,32 +9,32 @@ class HealthInsurance(object):
 
         self.annual_premium_scaler = pickle.load(open(os.path.join(
             self.home_path,
-            '/src/features',
+            '/api/features',
             'annual_premium_scaler.pkl'), 'rb'))
 
         self.age_scaler = pickle.load(open(os.path.join(
                 self.home_path,
-                '/src/features',
+                '/api/features',
                 'age_scaler.pkl'), 'rb'))
 
         self.vintage_scaler = pickle.load(open(os.path.join(
             self.home_path,
-            '/src/features',
+            '/api/features',
             'vintage_scaler.pkl'), 'rb'))
 
         self.target_encode_gender_scaler = pickle.load(open(os.path.join(
             self.home_path,
-            '/src/features',
+            '/api/features',
             'target_encode_gender_scaler.pkl'), 'rb'))
 
         self.target_encode_region_code_scaler = pickle.load(open(os.path.join(
             self.home_path,
-            '/src/features',
+            '/api/features',
             'target_encode_region_code_scaler.pkl'), 'rb'))
 
         self.fe_policy_sales_channel_scaler = pickle.load(open(os.path.join(
             self.home_path,
-            '/src/features', 'fe_policy_sales_channel_scaler.pkl'), 'rb'))
+            '/api/features', 'fe_policy_sales_channel_scaler.pkl'), 'rb'))
 
     def rename_columns(self, data):
         new_columns = {col: inflection.underscore(col) for col in data.columns}
@@ -42,7 +42,7 @@ class HealthInsurance(object):
 
     def feature_engineering(self, data):
         # vehicle age
-        # df2['vehicle_age'] = df2['vehicle_age'].apply(lambda x: 
+        # df2['vehicle_age'] = df2['vehicle_age'].apply(lambda x:
         # 'over_2_years' if x == '> 2 Years' else 'between_1_2_year' if x ==
         # '1-2 Year' else 'below_1_year')
 

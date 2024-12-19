@@ -2,21 +2,19 @@ import os
 import pickle
 import pandas as pd
 from flask import Flask, request, Response
-from API.health_insurance.health_insurance import HealthInsurance
+from health_insurance import HealthInsurance
 
 # loading model
 home_path = os.getcwd()
-model = (pickle.load(open(os.path.join(
-    home_path,
-    'src',
-    'models',
-    'model_health_insurance_cross_sell.pkl', 'rb'))))
+model = (pickle.load(open(
+    'api/models/model_health_insurance_cross_sell.pkl', 'rb')))
+
 
 # initialize API
 app = Flask(__name__)
 
 
-@app.route('app', methods=['POST'])
+@app.route('/app', methods=['POST'])
 def health_insurance_predict():
     test_json = request.get_json()
 
