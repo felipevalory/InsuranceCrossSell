@@ -6,7 +6,7 @@ from health_insurance import HealthInsurance
 
 # loading model
 home_path = os.getcwd()
-model = pickle.load(open('api/models/model_health_insurance_cross_sell.pkl', 'rb'))
+model = pickle.load(open('api\models\model_health_insurance_cross_sell.pkl', 'rb'))
 
 
 # initialize API
