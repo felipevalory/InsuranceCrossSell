@@ -16,7 +16,7 @@ model = (pickle.load(open(os.path.join(
 app = Flask(__name__)
 
 
-@app.route('/predict', methods=['POST'])
+@app.route('app', methods=['POST'])
 def health_insurance_predict():
     test_json = request.get_json()
 
