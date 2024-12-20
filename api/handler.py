@@ -14,6 +14,11 @@ model = (pickle.load(open(
 app = Flask(__name__)
 
 
+@app.route('/', methods=['GET', 'HEAD'])
+def health_check():
+    return Response('API is running!', status=200, mimetype='text/plain')
+
+
 @app.route('/', methods=['POST'])
 def health_insurance_predict():
     test_json = request.get_json()
