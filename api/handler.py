@@ -2,7 +2,7 @@ import os
 import pickle
 import pandas as pd
 from flask import Flask, request, Response
-from api.health_insurance import HealthInsurance
+from health_insurance import HealthInsurance
 
 # loading model
 home_path = os.getcwd()
