@@ -21,29 +21,39 @@ The dataset is about an Insurance company that has provided Health Insurance to 
 My strategy to solve this challenge was:
 
 **Step 01. Data Description:**
+
 Initial analysis of the data provided by the company, including the distribution of variables and identification of missing values.
 
 **Step 02. Feature Engineering:**
+
 Creation and transformation of relevant variables to enhance the predictive power of the model.
 
 **Step 03. Data Filtering:**
+
 Removal of outliers and handling of data inconsistencies.
 
 **Step 04. Exploratory Data Analysis:**
+
 Identification of relationships between variables and understanding customer behavioral patterns.
 
 **Step 05. Data Preparation:**
+
 Normalization, encoding categorical variables, and splitting data into training and testing sets.
 
 **Step 06. Feature Selection:**
+
 Identification of the most important variables for model performance.
 
 **Step 07. Machine Learning Modelling:**
+
 Training machine learning models to predict the likelihood of car insurance purchase.
 
 **Step 08. Cross-Validation:**
 
+Implemented 5-fold cross-validation with stratified sampling to maintain class distribution across folds.
+
 **Step 09. Convert Model Performance to Business Values:**
+
 Converting model results into tangible insights, such as expected revenue increase.
 
 # 4. Top 3 Data Insights
@@ -67,7 +77,7 @@ The main model used was the XGBoost, which showed excellent performance in class
 
 # 6. Machine Learning Model Performance
 
-- **Recall at K (class 1):** 79,48%
+- **Recall at K (average):** 79,48%
 
 # 7. Business Results
 
@@ -78,9 +88,9 @@ The results show that the model is effective at ranking customers, significantly
 - The proposed model is 2.5x better than a random choice.
 - If we adopt 1000 dollars for each insurance, this model will achieve about US$ 26 million more in revenue than a random choice.
 
-![Cumulative Gains Curve](img/cumulative_gains_curve.jpg)
+![Cumulative Gains Curve](img/cumulative_gains_curve.png)
 
-![Lift Curve](img/lift_curve.jpg)
+![Lift Curve](img/lift_curve.png)
 
 # 8. Conclusions
 
